@@ -1,57 +1,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Tech Blog</title>
   </head>
-  <body>
-    {{! TODO better nav }}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span></a>
+  <body class="flex-column min-100-vh">
+    <header class="hero">
+      <nav class="nav">
+        <ul>
+          <li>
+            <a href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+          {{#if loggedIn}}
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <button id="logout" class="btn-no-style">Logout</button>
+          {{else}}
+            <li>
+              <a href="/login">Login</a>
+            </li>
+          {{/if}}
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form> -->
-      </div>
-    </nav>
-    {{{body}}}
+      </nav>
+      <h1 class="app-title">The Tech Blog</h1>
+    </header>
+
+    <main>
+      {{{body}}}
+    </main>
+
+    {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
   </body>
 </html>

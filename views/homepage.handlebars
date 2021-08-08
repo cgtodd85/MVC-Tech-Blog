@@ -1,14 +1,5 @@
-<div class="wrapper-grid">
-  {{#each posts}}
-    <div class="card w-75">
-      <div class="card-body">
-        <h5 class="card-title">{{post_title}}</h5>
-        <p class="card-text">
-          {{blog_content}}
-        </p>
-        <p>by {{user.username}}</p>
-        <a href="#" class="btn btn-primary">Button</a>
-      </div>
-    </div>
-  {{/each}}
-</div>
+{{#each posts}}
+<a href="/post/{{id}}">
+    {{> post-info }}
+</a>
+{{/each}}
