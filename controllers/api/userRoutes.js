@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt");
 router.get("/", async (req, res) => {
   try {
     const allUsers = await User.findAll();
-    const userData = allUsers.map((user) => user.get({ plain: true }));
-    res.status(200).json(userData);
+    // const userData = allUsers.map((user) => user.get({ plain: true }));
+    res.status(200).json(allUsers);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -70,6 +70,7 @@ router.put("/:id", async (req, res) => {
         where: {
           id: req.params.id,
         },
+        individualHooks: true,
       }
     );
     res.status(200).json(updatedUserData);
