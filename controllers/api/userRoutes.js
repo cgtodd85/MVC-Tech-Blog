@@ -58,18 +58,10 @@ router.post("/logout", (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     // hooks created in user model will take data being passed into update and make it lower case first
-    const updatedUserData = await User.update(
-      {
-        email: req.body.email,
-        password: req.body.password,
-      },
-      {
-        where: {
-          id: req.params.id,
-        },
-        individualHooks: true,
-      }
-    );
+    const updatedUserData = await User.update(req.body, {
+      where: { id: req.params.id },
+      individualHooks: true,
+    });
     res.status(200).json(updatedUserData);
   } catch (err) {
     res.status(500).json(err);
