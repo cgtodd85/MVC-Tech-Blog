@@ -32,6 +32,11 @@ Comment.init(
       allowNull: false,
       defaultValue: "Comment Text Placeholder.",
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

@@ -6,7 +6,7 @@ const { Post, User, Comment } = require("../models");
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User, attributes: ["username"] }],
+      include: [{ model: User, attributes: ["username"] }, { model: Comment }],
     });
 
     // Serialize data so the template can read it
