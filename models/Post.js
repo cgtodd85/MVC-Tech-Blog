@@ -29,6 +29,11 @@ Post.init(
       allowNull: false,
       defaultValue: "Blog Text Placeholder.",
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

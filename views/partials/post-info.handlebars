@@ -1,22 +1,22 @@
 <article class="post card">
   <div class="card-header">
     <div class="title">
-      {{title}}
+      {{ppost_title}}
     </div>
     <div class="meta">
       Posted by
-      {{user.username}}
+      {{!-- {{user.username}} --}}
       on
-      {{format_date created_at}}
+      {{!-- {{format_date date_created}} --}}
     </div>
   </div>
   <div class="card-body">
     <div class="content">
-      {{content}}
+      {{blog_content}}
     </div>
     <div>
-      {{comments.length}}
-      {{format_plural "comment" comments.length}}
+      {{!-- {{comments.length}}
+      {{format_plural "comment" comments.length}} --}}
     </div>
   </div>
 </article>
