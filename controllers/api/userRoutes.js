@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// --- LOGIN --- //
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -45,7 +46,12 @@ router.post("/login", async (req, res) => {
       res.status(400).json({ message: "Login failed. Please try again!" });
       return;
     }
-    res.status(200).json({ message: "You are now logged in! Blog away!" });
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      res
+        .status(200)
+        .json({ user: userData, message: "You are now logged in! Blog away!" });
+    });
   } catch (err) {
     res.status(500).json(err);
   }
