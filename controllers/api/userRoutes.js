@@ -1,6 +1,6 @@
 const { User } = require("../../models");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 // const withAuth = require("../../utils/auth");
 
 // get all users
@@ -30,13 +30,10 @@ router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
     if (!userData) {
-      res.status(404).json({ message: "Login failed. Please try again!" });
+      res.status(400).json({ message: "Login failed. Please try again!" });
       return;
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      userData.password
-    );
+    const validPassword = await userData.checkPassword(req.body.password);
     if (!validPassword) {
       res.status(400).json({ message: "Login failed. Please try again!" });
       return;
