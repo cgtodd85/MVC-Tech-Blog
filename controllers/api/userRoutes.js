@@ -22,10 +22,8 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-
     req.session.save(() => {
       req.session.loggedIn = true;
-
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -57,8 +55,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// --- LOGOUT --- //
 router.post("/logout", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
     });
