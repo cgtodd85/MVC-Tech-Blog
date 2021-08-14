@@ -40,9 +40,11 @@ User.init(
     },
   },
   {
+    // TODO test this and make sure password is hashed
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.email = await newUserData.email.toLowerCase();
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {

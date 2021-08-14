@@ -15,12 +15,24 @@ router.get("/", async (req, res) => {
 });
 
 // Create a new user
+// TODO test new syntax to create user
 router.post("/", async (req, res) => {
   try {
-    const newUser = req.body;
-    newUser.password = await bcrypt.hash(req.body.password, 10);
-    const userData = await User.create(newUser);
-    res.status(200).json(userData);
+    const dbUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res.status(200).json(dbUserData);
+    });
+    // const newUser = req.body;
+    // newUser.password = await bcrypt.hash(req.body.password, 10);
+    // const userData = await User.create(newUser);
+    // res.status(200).json(userData);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -44,7 +56,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// logout
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
