@@ -40,7 +40,6 @@ User.init(
     },
   },
   {
-    // TODO test this and make sure password is hashed
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.email = await newUserData.email.toLowerCase();

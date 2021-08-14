@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
 });
 
 // Create a new user
-// TODO test new syntax to create user
 router.post("/", async (req, res) => {
   try {
     const dbUserData = await User.create({
@@ -29,10 +28,6 @@ router.post("/", async (req, res) => {
 
       res.status(200).json(dbUserData);
     });
-    // const newUser = req.body;
-    // newUser.password = await bcrypt.hash(req.body.password, 10);
-    // const userData = await User.create(newUser);
-    // res.status(200).json(userData);
   } catch (err) {
     res.status(400).json(err);
   }
