@@ -44,6 +44,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
   }
 });
 
+//TODO does dashboard work
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -55,22 +56,29 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
 
     res.render("/dashboard", {
-      ...user,
-      logged_in: true,
+      user,
+      loggedIn: true,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//TODO finish route to render login
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
     return;
   }
-
   res.render("login");
+});
+
+router.get("/signup", (req, res) => {
+  console.log(req.session);
+  if (req.session.loggedIn) {
+    res.redirect("/dashboard");
+    return;
+  }
+  res.render("signup");
 });
 
 //   try {
