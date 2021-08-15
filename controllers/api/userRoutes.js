@@ -1,7 +1,5 @@
 const { User } = require("../../models");
 const router = require("express").Router();
-// const bcrypt = require("bcrypt");
-// const withAuth = require("../../utils/auth");
 
 // get all users
 router.get("/", async (req, res) => {
