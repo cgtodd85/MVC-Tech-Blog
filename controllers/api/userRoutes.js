@@ -31,13 +31,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-// TODO not working?
 // --- LOGIN --- //
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
       where: { username: req.body.username },
-      // where: { email: req.body.email },
     });
     if (!userData) {
       res.status(400).json({ message: "Login failed. Please try again!" });

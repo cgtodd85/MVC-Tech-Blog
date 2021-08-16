@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// TODO do I need withAuth here
+//Single Post view
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
     const singlePost = await Post.findByPk(req.params.id, {
@@ -44,7 +44,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
   }
 });
 
-//TODO does dashboard work
+//Dashboard view
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -54,16 +54,18 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    console.log(user);
 
-    res.render("/dashboard", {
+    res.render("dashboard", {
       user,
-      loggedIn: true,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+//Login view
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/dashboard");
@@ -72,6 +74,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+//Logout view
 router.get("/signup", (req, res) => {
   console.log(req.session);
   if (req.session.loggedIn) {
@@ -80,6 +83,8 @@ router.get("/signup", (req, res) => {
   }
   res.render("signup");
 });
+
+//edit a post view
 
 //   try {
 //     if (req.session.loggedIn) {
