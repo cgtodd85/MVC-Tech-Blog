@@ -12,7 +12,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const portNum = 3002;
-const PORT = process.env.PORT || portNum;
+let PORT = process.env.PORT || portNum;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
