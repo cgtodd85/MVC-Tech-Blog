@@ -1,4 +1,4 @@
-async function deleteFormHandler(event) {
+const deleteFormHandler = async (event) => {
   console.log("this button was clicked");
   event.preventDefault();
 
@@ -15,7 +15,7 @@ async function deleteFormHandler(event) {
   } else {
     alert(response.statusText);
   }
-}
+};
 
 document
   .querySelector(".delete-post-btn")
