@@ -11,10 +11,12 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-const portNum = 3002;
-let PORT = process.env.PORT || portNum;
 
-// Set up Handlebars.js engine with custom helpers
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+
 const hbs = exphbs.create({ helpers });
 
 const sess = {
@@ -29,18 +31,17 @@ const sess = {
 
 app.use(session(sess));
 
-// Inform Express.js on which template engine to use
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
-    console.log("Now listening on port " + portNum + "!!!!!!!!!")
+    console.log("Now listening on port " + port + "!!!!!!!!!")
   );
 });
