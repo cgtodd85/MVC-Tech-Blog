@@ -64,6 +64,30 @@ router.get("/dashboard", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//edit a post view
+router.get("/dashboard/edit/:id", withAuth, async (req, res) => {
+  try {
+    const singlePost = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Comment,
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      ],
+    });
+    const post = singlePost.get({ plain: true });
+    console.log(post);
+    res.render("edit-post", { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 //Login view
 router.get("/login", (req, res) => {
@@ -83,8 +107,6 @@ router.get("/signup", (req, res) => {
   }
   res.render("signup");
 });
-
-//edit a post view
 
 //   try {
 //     if (req.session.loggedIn) {
