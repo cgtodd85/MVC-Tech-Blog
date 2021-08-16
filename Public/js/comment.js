@@ -26,6 +26,27 @@ const commentFormHandler = async (event) => {
   }
 };
 
+// addButtons();
+
 document
   .querySelector(".comment-form")
   .addEventListener("submit", commentFormHandler);
+
+// Attempting logic to compare usernames to the user currently logged in in order to produce update or delete post buttons
+// const comments = document.querySelectorAll(".comment");
+
+// window.addEventListener("load", function () {
+//   console.log(session.username);
+//   console.log(comments);
+//   console.log(comments[0].children[1].children[0].textContent);
+// });
+
+// function addButtons() {
+//   for (let i = 0; i < comments.length; i++) {
+//     const name = comments[i].children[1].children[0].textContent;
+//     if (name === sessionStorage.username) {
+//     }
+//   }
+// }
+
+// const userName = document.querySelectorAll(".username");
