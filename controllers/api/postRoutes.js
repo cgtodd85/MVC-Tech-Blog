@@ -6,6 +6,7 @@ const router = require("express").Router();
 
 // create post
 router.post("/", withAuth, async (req, res) => {
+  console.log(req.session);
   try {
     const newPost = await Post.create({
       user_id: req.session.user_id,
