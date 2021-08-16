@@ -15,7 +15,6 @@ body {
   background-color: var(--primary);
   margin: 0;
   padding: 0;
-  /* font-family: "IBM Plex Sans", sans-serif; */
   font-family: "Righteous", sans-serif;
   color: var(--dark);
   line-height: 1.5;
@@ -130,7 +129,6 @@ main {
   box-shadow: 6px 5px var(--light-dark);
 }
 
-/* CARDS */
 .card {
   margin: 0 0 20px 0;
   border: 3px solid var(--dark);
@@ -162,7 +160,6 @@ main {
   margin-bottom: 20px;
 }
 
-/* COMMENTS */
 .comment-form-body {
   padding: 20px;
 }
@@ -176,7 +173,6 @@ main {
   font-size: 14px;
 }
 
-/* FORM */
 .form-label,
 .form-input {
   display: block;
