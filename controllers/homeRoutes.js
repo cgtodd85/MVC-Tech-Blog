@@ -38,7 +38,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
     });
     const post = singlePost.get({ plain: true });
     console.log(post);
-    res.render("single-post", { post, loggedIn: req.session.loggedIn });
+    res.render("singlepost", { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
